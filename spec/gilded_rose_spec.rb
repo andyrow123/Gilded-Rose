@@ -55,6 +55,15 @@ describe GildedRose do
           expect(item.quality).to eq quality + 1
         end
       end
+
+      context 'after date' do
+        let(:sell_in) { 0 }
+        it 'should increase quality by 2' do
+          aged_brie.update_quality
+          expect(item.quality).to eq quality + 2
+        end
+      end
+
     end
 
     context 'Sulfuras' do
