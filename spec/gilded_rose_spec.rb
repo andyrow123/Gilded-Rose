@@ -133,7 +133,7 @@ describe GildedRose do
         expect(item.sell_in).to eq sell_in - 1
       end
 
-      context '11 days before date' do
+      context '11 days and downwards before date' do
         let(:sell_in) { 11 }
         it 'quality should increase by 1' do
           passes.update_quality
@@ -141,11 +141,19 @@ describe GildedRose do
         end
       end
 
-      context '10 days before date' do
+      context '10 days and downwards before date' do
         let(:sell_in) { 10 }
         it 'quality should increase by 2' do
           passes.update_quality
           expect(item.quality).to eq quality + 2
+        end
+      end
+
+      context '5 days and downwards before date' do
+        let(:sell_in) { 5 }
+        it 'quality should increase by 3' do
+          passes.update_quality
+          expect(item.quality).to eq quality + 3
         end
       end
     end
