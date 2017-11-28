@@ -64,6 +64,13 @@ describe GildedRose do
         end
       end
 
+      context 'maximum quality' do
+        let(:quality) { 50 }
+        it 'quality can not be more than 50' do
+          aged_brie.update_quality
+          expect(item.quality).to eq 50
+        end
+      end
     end
 
     context 'Sulfuras' do
