@@ -124,7 +124,14 @@ describe GildedRose do
     end
 
     context 'Backstage passes' do
-      
+      let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
+      let(:quality) { 40 }
+      let(:passes) { GildedRose.new([item]) }
+
+      it 'sell_in should stay the same' do
+        passes.update_quality
+        expect(item.sell_in).to eq sell_in - 1
+      end
     end
 
     it "does not change the name" do
