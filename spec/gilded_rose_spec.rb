@@ -90,7 +90,14 @@ describe GildedRose do
     end
 
     context 'Sulfuras' do
+      let(:name) { 'Sulfuras, Hand of Ragnaros' }
+      let(:quality) { 40 }
+      let(:sulfuras) { GildedRose.new([item]) }
 
+      it 'sell_in should stay the same' do
+        sulfuras.update_quality
+        expect(item.sell_in).to eq sell_in
+      end
     end
 
     context 'Backstage passes' do
