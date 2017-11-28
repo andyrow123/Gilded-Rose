@@ -41,7 +41,14 @@ describe GildedRose do
     end
 
     context 'Aged Brie' do
+      let(:name) { 'Aged Brie' }
+      let(:aged_brie) { GildedRose.new([item]) }
 
+      it 'should decrease sell_in by 1' do
+        aged_brie.update_quality
+        expect(item.sell_in).to eq sell_in - 1
+      end
+      
     end
 
     context 'Sulfuras' do

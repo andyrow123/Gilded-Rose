@@ -1,8 +1,24 @@
-# Method
+# Week 10 - Gilded Rose
+
+### Running Tests
+
+Usage:
+
+- Download or clone.
+- Change directory to thr root of the project.
+- run ` bundle install `
+- Run the below command from the directory root
+
+```
+$ rspec
+```
+
+## Method
 
 I started out by mapping out the information according to item:
  
 ![Alt text](./git_images/items.png?raw=true)
+
 
 # Gilded rose tech test
 
