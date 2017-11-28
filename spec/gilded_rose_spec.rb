@@ -98,6 +98,13 @@ describe GildedRose do
         sulfuras.update_quality
         expect(item.sell_in).to eq sell_in
       end
+
+      context 'before date' do
+        it 'quality should stay the same' do
+          sulfuras.update_quality
+          expect(item.quality).to eq quality
+        end
+      end
     end
 
     context 'Backstage passes' do
