@@ -15,7 +15,13 @@ describe GildedRose do
         normal.update_quality
         expect(item.sell_in).to eq sell_in - 1
       end
-      
+
+      context 'before date' do
+        it 'should decrease quality by 1' do
+          normal.update_quality
+          expect(item.quality).to eq quality - 1
+        end
+      end
     end
 
     context 'Aged Brie' do
