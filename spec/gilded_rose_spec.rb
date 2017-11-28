@@ -105,6 +105,14 @@ describe GildedRose do
           expect(item.quality).to eq quality
         end
       end
+
+      context 'on date' do
+        let(:sell_in) { 0 }
+        it 'quality should stay the same' do
+          sulfuras.update_quality
+          expect(item.quality).to eq quality
+        end
+      end
     end
 
     context 'Backstage passes' do
