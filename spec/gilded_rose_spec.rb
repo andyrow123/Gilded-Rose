@@ -31,7 +31,13 @@ describe GildedRose do
         end
       end
 
-
+      context 'minimum quality' do
+        let(:quality) { 0 }
+        it 'quality can not be less than 0' do
+          normal.update_quality
+          expect(item.quality).to eq 0
+        end
+      end
     end
 
     context 'Aged Brie' do
