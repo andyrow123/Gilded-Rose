@@ -132,6 +132,14 @@ describe GildedRose do
         passes.update_quality
         expect(item.sell_in).to eq sell_in - 1
       end
+
+      context '11 days before date' do
+        let(:sell_in) { 12 }
+        it 'quality should increase by 1' do
+          passes.update_quality
+          expect(item.quality).to eq quality + 1
+        end
+      end
     end
 
     it "does not change the name" do
