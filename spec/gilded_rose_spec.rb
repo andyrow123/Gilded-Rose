@@ -22,6 +22,16 @@ describe GildedRose do
           expect(item.quality).to eq quality - 1
         end
       end
+
+      context 'after date' do
+        let(:sell_in) { 0 }
+        it 'should decrease quality by 2' do
+          normal.update_quality
+          expect(item.quality).to eq quality - 2
+        end
+      end
+
+
     end
 
     context 'Aged Brie' do
