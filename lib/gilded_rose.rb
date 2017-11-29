@@ -8,8 +8,10 @@ class GildedRose
 
     @items.each do |item|
       case item.name
+        when 'Aged Brie'
+          return aged_brie_update(item)
         when 'normal'
-          return normal(item)
+          return normal_update(item)
       end
 
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
@@ -58,10 +60,20 @@ class GildedRose
     end
   end
 
-  def normal(item)
+  def normal_update(item)
     item.sell_in -= 1
-    return if item.quality <= 0
-    item.sell_in < 0 ? item.quality -= 2 : item.quality -= 1
+    return if item.quality.zero?
+
+    item.quality -= 1
+    item.quality -= 1 if item.sell_in <= 0
+  end
+
+  def aged_brie_update (item)
+    item.sell_in -= 1
+    return if item.quality == 50
+
+    item.quality += 1
+    item.quality += 1 if item.sell_in <= 0
   end
 end
 
@@ -79,10 +91,3 @@ class Item
   end
 end
 
-class NormalItem < Item
-  def update
-    self.sell_in -= 1
-    return if self.quality <= 0
-    self.sell_in < 0 ? self.quality -= 2 : self.quality -= 1
-  end
-end
