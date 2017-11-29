@@ -128,12 +128,12 @@ describe GildedRose do
       let(:quality) { 40 }
       let(:passes) { GildedRose.new([item]) }
 
-      it 'sell_in should stay the same' do
+      it 'sell_in should decrease by 1' do
         passes.update_quality
         expect(item.sell_in).to eq sell_in - 1
       end
 
-      context '11 days and downwards before date' do
+      context '11 days before date and downwards' do
         let(:sell_in) { 11 }
         it 'quality should increase by 1' do
           passes.update_quality
@@ -141,7 +141,7 @@ describe GildedRose do
         end
       end
 
-      context '10 days and downwards before date' do
+      context '10 days before date and downwards' do
         let(:sell_in) { 10 }
         it 'quality should increase by 2' do
           passes.update_quality
@@ -149,11 +149,27 @@ describe GildedRose do
         end
       end
 
-      context '5 days and downwards before date' do
+      context '5 days before date and downwards' do
         let(:sell_in) { 5 }
         it 'quality should increase by 3' do
           passes.update_quality
           expect(item.quality).to eq quality + 3
+        end
+      end
+
+      context 'on date' do
+        let(:sell_in) { 0 }
+        it 'quality should be 0' do
+          passes.update_quality
+          expect(item.quality).to eq 0
+        end
+      end
+
+      context 'after date' do
+        let(:sell_in) { -1 }
+        it 'quality should be 0' do
+          passes.update_quality
+          expect(item.quality).to eq 0
         end
       end
     end
@@ -164,5 +180,13 @@ describe GildedRose do
       expect(items[0].name).to eq "foo"
     end
   end
+end
 
+describe Item do
+  let(:item) { Item.new('normal', 4, 10) }
+  describe '#to_s' do
+    it 'should return a string "normal, 4, 10"' do
+      expect(item.to_s).to eq 'normal, 4, 10'
+    end
+  end
 end

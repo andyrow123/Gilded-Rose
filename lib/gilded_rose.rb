@@ -4,8 +4,14 @@ class GildedRose
     @items = items
   end
 
-  def update_quality()
+  def update_quality
+
     @items.each do |item|
+      case item.name
+        when 'normal'
+          return normal(item)
+      end
+
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
           if item.name != "Sulfuras, Hand of Ragnaros"
@@ -51,6 +57,12 @@ class GildedRose
       end
     end
   end
+
+  def normal(item)
+    item.sell_in -= 1
+    return if item.quality <= 0
+    item.sell_in < 0 ? item.quality -= 2 : item.quality -= 1
+  end
 end
 
 class Item
@@ -62,7 +74,15 @@ class Item
     @quality = quality
   end
 
-  def to_s()
+  def to_s
     "#{@name}, #{@sell_in}, #{@quality}"
+  end
+end
+
+class NormalItem < Item
+  def update
+    self.sell_in -= 1
+    return if self.quality <= 0
+    self.sell_in < 0 ? self.quality -= 2 : self.quality -= 1
   end
 end
